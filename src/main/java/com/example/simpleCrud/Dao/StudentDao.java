@@ -1,8 +1,11 @@
 package com.example.simpleCrud.Dao;
 
 import com.example.simpleCrud.Entity.Student;
+import org.springframework.stereotype.Repository;
+
 import java.util.*;
 
+@Repository
 public class StudentDao {
     private static Map<Integer, Student> students;
 
