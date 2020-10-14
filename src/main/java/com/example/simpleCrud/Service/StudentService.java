@@ -1,12 +1,9 @@
 package com.example.simpleCrud.Service;
 
-import com.example.simpleCrud.Dao.StudentDao;
+import com.example.simpleCrud.Dao.StudentDaoInterface;
 import com.example.simpleCrud.Entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Collection;
 
@@ -14,31 +11,31 @@ import java.util.Collection;
 public class StudentService {
 
     @Autowired
-    private StudentDao studentDao;
+    private StudentDaoInterface studentDaoInterface;
 
     // GET ALL STUDENTS
     public Collection<Student> getAllStudents(){
-        return this.studentDao.getAllStudents();
+        return this.studentDaoInterface.getAllStudents();
     }
 
     // GET STUDENT BY ID
     public Student getStudentById(int id){
-        return this.studentDao.getStudentById(id);
+        return this.studentDaoInterface.getStudentById(id);
     }
 
     // DELETE STUDENT BY ID
     public void deletetStudentById(int id){
-        this.studentDao.deletetStudentById(id);
+        this.studentDaoInterface.deletetStudentById(id);
     }
 
     // UPDATE STUDENT
     public void updateStudent(Student student){
-        this.studentDao.updateStudent(student);
+        this.studentDaoInterface.updateStudent(student);
     }
 
     // INSERT STUDENT
     public void insertStudent(Student student) {
-        this.studentDao.insertStudent(student);
+        this.studentDaoInterface.insertStudent(student);
     }
 
 

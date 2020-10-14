@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 @Repository
-public class StudentDao {
+public class FakeStudentDao implements StudentDaoInterface {
     private static Map<Integer, Student> students;
 
     static{
@@ -20,21 +20,25 @@ public class StudentDao {
     }
 
     // GET ALL STUDENTS
+    @Override
     public Collection<Student> getAllStudents(){
         return this.students.values();
     }
 
     // GET STUDENT BY ID
+    @Override
     public Student getStudentById(int id){
         return this.students.get(id);
     }
 
     // DELETE STUDENT BY ID
+    @Override
     public void deletetStudentById(int id){
         this.students.remove(id);
     }
 
     // UPDATE STUDENT
+    @Override
     public void updateStudent(Student student){
         Student s = students.get(student.getId());
 
@@ -46,6 +50,7 @@ public class StudentDao {
     }
 
     // INSERT STUDENT
+    @Override
     public void insertStudent(Student student) {
         students.put(student.getId(), student);
     }
