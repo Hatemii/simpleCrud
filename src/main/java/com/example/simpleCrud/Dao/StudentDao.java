@@ -19,7 +19,13 @@ public class StudentDao {
         };
     }
 
+    // GET ALL STUDENTS
     public Collection<Student> getAllStudents(){
         return this.students.values();
+    }
+
+    // GET STUDENT BY ID
+    public Student getStudentById(int id){
+        return this.students.get(id);
     }
 }
