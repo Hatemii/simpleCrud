@@ -28,4 +28,10 @@ public class StudentController {
     public Student getStudentById(@PathVariable("id") int id){
         return this.studentService.getStudentById(id);
     }
+
+    // DELETE STUDENT BY ID
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deletetStudentById(@PathVariable("id") int id){
+         this.studentService.deletetStudentById(id);
+    }
 }
