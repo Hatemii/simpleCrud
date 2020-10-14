@@ -4,6 +4,7 @@ import com.example.simpleCrud.Entity.Student;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Repository
@@ -11,7 +12,11 @@ import java.util.Collection;
 public class MongoStudentDaoImpl implements StudentDaoInterface{
     @Override
     public Collection<Student> getAllStudents() {
-        return null;
+        return new ArrayList<Student>(){
+            {
+                add(new Student(1,"Mario","Example"));
+            }
+        };
     }
 
     @Override
