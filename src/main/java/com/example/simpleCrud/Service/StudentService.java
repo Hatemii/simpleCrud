@@ -36,4 +36,10 @@ public class StudentService {
         this.studentDao.updateStudent(student);
     }
 
+    // INSERT STUDENT
+    public void insertStudent(Student student) {
+        this.studentDao.insertStudent(student);
+    }
+
+
 }

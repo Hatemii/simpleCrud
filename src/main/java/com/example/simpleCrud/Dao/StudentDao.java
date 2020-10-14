@@ -45,4 +45,12 @@ public class StudentDao {
         students.put(student.getId(),student);
     }
 
+    // INSERT STUDENT
+    public void insertStudent(Student student) {
+        students.put(student.getId(), student);
+    }
+
+
+
+
 }
