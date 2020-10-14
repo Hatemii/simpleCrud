@@ -9,9 +9,10 @@ import java.util.Collection;
 
 @Service
 public class StudentService {
-    private StudentDao studentDao;
 
     @Autowired
+    private StudentDao studentDao;
+
     public Collection<Student> getAllStudents(){
         return this.studentDao.getAllStudents();
     }
