@@ -1,11 +1,13 @@
 package com.example.simpleCrud.Dao;
 
 import com.example.simpleCrud.Entity.Student;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
 @Repository
+@Qualifier("fakeData")
 public class FakeStudentDao implements StudentDaoInterface {
     private static Map<Integer, Student> students;
 

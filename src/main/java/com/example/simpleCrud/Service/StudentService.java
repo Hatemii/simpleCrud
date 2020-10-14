@@ -3,6 +3,7 @@ package com.example.simpleCrud.Service;
 import com.example.simpleCrud.Dao.StudentDaoInterface;
 import com.example.simpleCrud.Entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -11,6 +12,7 @@ import java.util.Collection;
 public class StudentService {
 
     @Autowired
+    @Qualifier("mongoData")
     private StudentDaoInterface studentDaoInterface;
 
     // GET ALL STUDENTS
