@@ -3,10 +3,8 @@ package com.example.simpleCrud.Controller;
 import com.example.simpleCrud.Entity.Student;
 import com.example.simpleCrud.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -34,4 +32,11 @@ public class StudentController {
     public void deletetStudentById(@PathVariable("id") int id){
          this.studentService.deletetStudentById(id);
     }
+
+    // UPDATE STUDENT
+    @RequestMapping(method = RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateStudent(@RequestBody Student student){
+        this.studentService.updateStudent(student);
+    }
+
 }

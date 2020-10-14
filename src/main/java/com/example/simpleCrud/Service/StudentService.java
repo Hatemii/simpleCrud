@@ -30,4 +30,10 @@ public class StudentService {
     public void deletetStudentById(int id){
         this.studentDao.deletetStudentById(id);
     }
+
+    // UPDATE STUDENT
+    public void updateStudent(Student student){
+        this.studentDao.updateStudent(student);
+    }
+
 }

@@ -33,4 +33,16 @@ public class StudentDao {
     public void deletetStudentById(int id){
         this.students.remove(id);
     }
+
+    // UPDATE STUDENT
+    public void updateStudent(Student student){
+        Student s = students.get(student.getId());
+
+        s.setId(student.getId());
+        s.setName(student.getName());
+        s.setCourse(student.getCourse());
+
+        students.put(student.getId(),student);
+    }
+
 }
