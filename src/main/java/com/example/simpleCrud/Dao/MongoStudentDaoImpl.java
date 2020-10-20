@@ -2,21 +2,32 @@ package com.example.simpleCrud.Dao;
 
 import com.example.simpleCrud.Entity.Student;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 @Repository
-@Qualifier("mongoData")
-public class MongoStudentDaoImpl implements StudentDaoInterface{
+@Qualifier("sqlite")
+public class MongoStudentDaoImpl implements StudentDaoInterface {
+
+    private final JdbcTemplate jdbcTemplate;
+
+    public MongoStudentDaoImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
     @Override
     public Collection<Student> getAllStudents() {
-        return new ArrayList<Student>(){
-            {
-                add(new Student(1,"Mario","Example"));
-            }
-        };
+        String url = "SELECT * FROM student";
+        return jdbcTemplate.query(url, (resultSet, i) -> {
+            int id = resultSet.getInt("id");
+            String name = resultSet.getString("name");
+            String course = resultSet.getString("course");
+
+            return new Student(id, name, course);
+        });
     }
 
     @Override

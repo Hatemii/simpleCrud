@@ -12,26 +12,26 @@ import java.util.Collection;
 public class StudentService {
 
     @Autowired
-    @Qualifier("mongoData")
+    @Qualifier("sqlite")
     private StudentDaoInterface studentDaoInterface;
 
     // GET ALL STUDENTS
-    public Collection<Student> getAllStudents(){
+    public Collection<Student> getAllStudents() {
         return this.studentDaoInterface.getAllStudents();
     }
 
     // GET STUDENT BY ID
-    public Student getStudentById(int id){
+    public Student getStudentById(int id) {
         return this.studentDaoInterface.getStudentById(id);
     }
 
     // DELETE STUDENT BY ID
-    public void deletetStudentById(int id){
+    public void deletetStudentById(int id) {
         this.studentDaoInterface.deletetStudentById(id);
     }
 
     // UPDATE STUDENT
-    public void updateStudent(Student student){
+    public void updateStudent(Student student) {
         this.studentDaoInterface.updateStudent(student);
     }
 
