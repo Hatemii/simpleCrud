@@ -34,7 +34,7 @@ public class StudentController {
     }
 
     // UPDATE STUDENT
-    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateStudent(@PathVariable("id") int id, @RequestBody Student student) {
         this.studentService.updateStudent(id, student);
     }

@@ -55,8 +55,8 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
 
     @Override
     public void updateStudent(int id, Student student) {
-        String url = "UPDATE student SET name = ? course = ? , WHERE ID = ?";
-
+        String url = "UPDATE student SET name = ?, course = ? WHERE ID = ?";
+        jdbcTemplate.update(url, student.getName(), student.getCourse(), id);
     }
 
     @Override
