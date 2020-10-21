@@ -15,7 +15,7 @@ public interface StudentDaoInterface {
     void deletetStudentById(int id);
 
     // UPDATE STUDENT
-    void updateStudent(Student student);
+    void updateStudent(int id, Student student);
 
     // INSERT STUDENT
     void insertStudent(Student student);

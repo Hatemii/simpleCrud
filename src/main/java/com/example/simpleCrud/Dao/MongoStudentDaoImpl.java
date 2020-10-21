@@ -5,14 +5,19 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Repository
 @Qualifier("sqlite")
 public class MongoStudentDaoImpl implements StudentDaoInterface {
 
     private final JdbcTemplate jdbcTemplate;
+    private static List<Student> st = new ArrayList<>();
 
     public MongoStudentDaoImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -45,16 +50,19 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
     @Override
     public void deletetStudentById(int id) {
         String url = "DELETE FROM student WHERE ID = " + id;
-        jdbcTemplate.execute(url);
+        jdbcTemplate.update(url);
     }
 
     @Override
-    public void updateStudent(Student student) {
+    public void updateStudent(int id, Student student) {
+        String url = "UPDATE student SET name = ? course = ? , WHERE ID = ?";
 
     }
 
     @Override
     public void insertStudent(Student student) {
+        String url = "INSERT INTO student (name, course) VALUES (?, ?)";
+        jdbcTemplate.update(url, student.getName(), student.getCourse());
 
     }
 }

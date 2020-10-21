@@ -31,8 +31,8 @@ public class StudentService {
     }
 
     // UPDATE STUDENT
-    public void updateStudent(Student student) {
-        this.studentDaoInterface.updateStudent(student);
+    public void updateStudent(int id, Student student) {
+        this.studentDaoInterface.updateStudent(id, student);
     }
 
     // INSERT STUDENT
