@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Student {
     private int id;
-    private String name,course;
+    private String name, course;
 
     public Student(int id, String name, String course) {
         this.id = id;
@@ -12,7 +12,9 @@ public class Student {
         this.course = course;
     }
 
-    public Student(){};
+    public Student() {}
+
+    ;
 
     public int getId(int id) {
         return this.id;
@@ -36,5 +38,10 @@ public class Student {
 
     public void setCourse(String course) {
         this.course = course;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" + "id=" + id + ", name='" + name + '\'' + ", course='" + course + '\'' + '}';
     }
 }
