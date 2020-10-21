@@ -44,7 +44,8 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
 
     @Override
     public void deletetStudentById(int id) {
-
+        String url = "DELETE FROM student WHERE ID = " + id;
+        jdbcTemplate.execute(url);
     }
 
     @Override
