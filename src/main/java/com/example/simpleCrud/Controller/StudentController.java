@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collection;
 
 @RestController
@@ -41,7 +42,7 @@ public class StudentController {
 
     // INSERT STUDENT
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void insertStudent(@RequestBody Student student) {
+    public void insertStudent(@Valid @RequestBody Student student) {
         this.studentService.insertStudent(student);
     }
 }

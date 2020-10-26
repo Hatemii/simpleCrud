@@ -1,10 +1,16 @@
 package com.example.simpleCrud.Entity;
 
+import javax.validation.constraints.NotBlank;
 import java.util.*;
 
 public class Student {
     private int id;
-    private String name, course;
+
+    @NotBlank(message = "Name may not be null")
+    private String name;
+
+    @NotBlank(message = "Course may not be null")
+    private String course;
 
     public Student(int id, String name, String course) {
         this.id = id;
@@ -12,7 +18,8 @@ public class Student {
         this.course = course;
     }
 
-    public Student() {}
+    public Student() {
+    }
 
     ;
 
