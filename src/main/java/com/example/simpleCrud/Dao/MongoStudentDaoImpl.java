@@ -32,7 +32,7 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
 
     @Override
     public Collection<Student> getAllStudents() {
-        final String sql = "SELECT * FROM student";
+        final String sql = "SELECT * FROM student ORDER BY id DESC";
         return jdbcTemplate.query(sql, (resultSet, i) -> {
             return new Student(resultSet.getInt("id"),
                     resultSet.getString("name"),
