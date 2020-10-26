@@ -71,18 +71,40 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
         jdbcTemplate.update(url, id);
     }
 
+//    @Override
+//    public void updateStudent(int id, Student student) {
+//        final String url = "UPDATE student SET name = ?, course = ? WHERE ID = ?";
+//        jdbcTemplate.update(url, student.getName(), student.getCourse(), id);
+//    }
+
     @Override
     public void updateStudent(int id, Student student) {
-        final String url = "UPDATE student SET name = ?, course = ? WHERE ID = ?";
-        jdbcTemplate.update(url, student.getName(), student.getCourse(), id);
+        final String url = "UPDATE student SET " +
+                "name = '" + student.getName() + "', " +
+                "course = '" + student.getCourse() + "' " +
+                "WHERE ID = " + id;
+
+        jdbcTemplate.update(url);
     }
+
+
+//    @Override
+//    public void insertStudent(Student student) {
+//        final String url = "INSERT INTO student (name, course) VALUES (?, ?)";
+//        jdbcTemplate.update(url, student.getName(), student.getCourse());
+//
+//    }
+
 
     @Override
     public void insertStudent(Student student) {
-        final String url = "INSERT INTO student (name, course) VALUES (?, ?)";
-        jdbcTemplate.update(url, student.getName(), student.getCourse());
+        final String url = "INSERT INTO student (name, course)" +
+                " VALUES ('" + student.getName() + "', '" + student.getCourse() + "')";
+
+        jdbcTemplate.update(url);
 
     }
+
 }
 
 // jdbcTemplate.queryForObject -->> for single row or value
