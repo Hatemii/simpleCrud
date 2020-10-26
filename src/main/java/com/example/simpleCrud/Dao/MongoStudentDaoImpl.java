@@ -32,9 +32,11 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
 
     @Override
     public Collection<Student> getAllStudents() {
-        final String url = "SELECT * FROM student";
-        return jdbcTemplate.query(url, (resultSet, i) -> {
-            return new Student(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("course"));
+        final String sql = "SELECT * FROM student";
+        return jdbcTemplate.query(sql, (resultSet, i) -> {
+            return new Student(resultSet.getInt("id"),
+                    resultSet.getString("name"),
+                    resultSet.getString("course"));
         });
     }
 
@@ -54,8 +56,11 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
     @Override
     public Student getStudentById(int id) {
         final String url = "SELECT * FROM student WHERE ID = ?";
-        return jdbcTemplate.queryForObject(url, new Object[] {id}, (resultSet, i) -> {
-            return new Student(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("course"));
+        return jdbcTemplate.queryForObject(url, new Object[]{id}, (resultSet, i) -> {
+            return new Student(
+                    resultSet.getInt("id"),
+                    resultSet.getString("name"),
+                    resultSet.getString("course"));
         });
     }
 

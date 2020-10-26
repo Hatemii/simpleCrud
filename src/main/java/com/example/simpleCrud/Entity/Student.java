@@ -18,13 +18,9 @@ public class Student {
         this.course = course;
     }
 
-    public Student() {
-    }
 
-    ;
-
-    public int getId(int id) {
-        return this.id;
+    public int getId() {
+        return id;
     }
 
     public void setId(int id) {
@@ -47,8 +43,5 @@ public class Student {
         this.course = course;
     }
 
-    @Override
-    public String toString() {
-        return "Student{" + "id=" + id + ", name='" + name + '\'' + ", course='" + course + '\'' + '}';
-    }
+
 }
