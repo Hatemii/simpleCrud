@@ -40,5 +40,19 @@ public class StudentService {
         this.studentDaoInterface.insertStudent(student);
     }
 
+    // Count
+    public int countStudents() {
+        return this.studentDaoInterface.countStudents();
+    }
+
+    // Delete all records
+    public void deleteAllRecords() {
+        this.studentDaoInterface.deleteAllRecords();
+    }
+
+    // delete all where name starts with
+    public void deleteAllWhere(String s) {
+        this.studentDaoInterface.deleteAllWhere(s);
+    }
 
 }

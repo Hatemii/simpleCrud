@@ -22,7 +22,7 @@ public class StudentController {
         return this.studentService.getAllStudents();
     }
 
-    // GET STUDENT BY ID
+    // GET STUDENT BY ID    `                                                           `````````````````````````````
     @GetMapping(value = "/{id}")
     public Student getStudentById(@PathVariable("id") int id) {
         return this.studentService.getStudentById(id);
@@ -45,4 +45,26 @@ public class StudentController {
     public void insertStudent(@Valid @RequestBody Student student) {
         this.studentService.insertStudent(student);
     }
+
+    // Count
+    @GetMapping(value = "/count")
+    public int countStudents() {
+        return this.studentService.countStudents();
+    }
+
+
+    // Delete all records
+    @DeleteMapping
+    @RequestMapping("/deleteAll")
+    public void deleteAllRecords() {
+        this.studentService.deleteAllRecords();
+    }
+
+    // delete all where name starts with
+    @DeleteMapping
+    @RequestMapping(value = "/deleteAll/{s}")
+    public void deleteAllWhere(@PathVariable("s") String s) {
+        this.studentService.deleteAllWhere(s);
+    }
+
 }

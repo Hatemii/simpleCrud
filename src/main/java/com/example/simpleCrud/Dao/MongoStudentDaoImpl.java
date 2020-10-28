@@ -32,7 +32,7 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
 
     @Override
     public Collection<Student> getAllStudents() {
-        final String sql = "SELECT * FROM student ORDER BY id DESC";
+        final String sql = "SELECT * FROM student ORDER BY ID DESC";
         return jdbcTemplate.query(sql, (resultSet, i) -> {
             return new Student(resultSet.getInt("id"),
                     resultSet.getString("name"),
@@ -67,8 +67,8 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
 
     @Override
     public void deletetStudentById(int id) {
-        final String url = "DELETE FROM student WHERE ID = ?";
-        jdbcTemplate.update(url, id);
+        final String url = "DELETE FROM student WHERE ID = " + id;
+        jdbcTemplate.update(url);
     }
 
 //    @Override
@@ -104,6 +104,29 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
         jdbcTemplate.update(url);
 
     }
+
+    @Override
+    public int countStudents() {
+        final String sql = "SELECT COUNT(*) FROM student";
+        // not best practice !
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
+    // delete all records
+    @Override
+    public void deleteAllRecords() {
+        final String sql = "DELETE FROM student";
+        jdbcTemplate.update(sql);
+    }
+
+
+    // delete all where name starts with
+    @Override
+    public void deleteAllWhere(String s) {
+        final String sql = "DELETE FROM student WHERE Name LIKE '" + s + "%'";
+        jdbcTemplate.update(sql);
+    }
+
 
 }
 

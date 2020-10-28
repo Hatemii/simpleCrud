@@ -19,4 +19,15 @@ public interface StudentDaoInterface {
 
     // INSERT STUDENT
     void insertStudent(Student student);
+
+    // Count
+    int countStudents();
+
+    // delete all records
+    void deleteAllRecords();
+
+    // delete all records where name starts with
+    void deleteAllWhere(String s);
+
+
 }
