@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/students")
@@ -18,7 +19,7 @@ public class StudentController {
 
     // GET ALL STUDENTS
     @GetMapping
-    public Collection<Student> getAllStudents() {
+    public List<Student> getAllStudents() {
         return this.studentService.getAllStudents();
     }
 
@@ -29,19 +30,19 @@ public class StudentController {
     }
 
     // DELETE STUDENT BY ID
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/delete/{id}")
     public void deletetStudentById(@PathVariable("id") int id) {
         this.studentService.deletetStudentById(id);
     }
 
     // UPDATE STUDENT
-    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateStudent(@PathVariable("id") int id, @RequestBody Student student) {
         this.studentService.updateStudent(id, student);
     }
 
     // INSERT STUDENT
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/insert", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void insertStudent(@Valid @RequestBody Student student) {
         this.studentService.insertStudent(student);
     }

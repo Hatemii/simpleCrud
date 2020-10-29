@@ -2,6 +2,7 @@ package com.example.simpleCrud.Dao;
 
 import com.example.simpleCrud.Entity.Student;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +10,7 @@ import java.sql.*;
 import java.util.*;
 
 @Repository
-@Qualifier("sqlite")
+@Qualifier("studentsAccess")
 public class MongoStudentDaoImpl implements StudentDaoInterface {
 
     private final JdbcTemplate jdbcTemplate;
@@ -31,13 +32,18 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
     //    }
 
     @Override
-    public Collection<Student> getAllStudents() {
+    public List<Student> getAllStudents() {
         final String sql = "SELECT * FROM student ORDER BY ID DESC";
-        return jdbcTemplate.query(sql, (resultSet, i) -> {
-            return new Student(resultSet.getInt("id"),
-                    resultSet.getString("name"),
-                    resultSet.getString("course"));
-        });
+        try {
+            return jdbcTemplate.query(sql, (resultSet, i) -> {
+                return new Student(resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("course"));
+            });
+        } catch (DataAccessException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return null;
     }
 
 
@@ -56,19 +62,29 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
     @Override
     public Student getStudentById(int id) {
         final String url = "SELECT * FROM student WHERE ID = ?";
-        return jdbcTemplate.queryForObject(url, new Object[]{id}, (resultSet, i) -> {
-            return new Student(
-                    resultSet.getInt("id"),
-                    resultSet.getString("name"),
-                    resultSet.getString("course"));
-        });
+        try {
+            return jdbcTemplate.queryForObject(url, new Object[]{id}, (resultSet, i) -> {
+                return new Student(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("course"));
+            });
+        } catch (DataAccessException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return null;
     }
 
 
     @Override
     public void deletetStudentById(int id) {
         final String url = "DELETE FROM student WHERE ID = " + id;
-        jdbcTemplate.update(url);
+
+        try {
+            jdbcTemplate.update(url);
+        } catch (DataAccessException ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 
 //    @Override
@@ -84,7 +100,11 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
                 "course = '" + student.getCourse() + "' " +
                 "WHERE ID = " + id;
 
-        jdbcTemplate.update(url);
+        try {
+            jdbcTemplate.update(url);
+        } catch (DataAccessException ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 
 
@@ -101,7 +121,11 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
         final String url = "INSERT INTO student (name, course)" +
                 " VALUES ('" + student.getName() + "', '" + student.getCourse() + "')";
 
-        jdbcTemplate.update(url);
+        try {
+            jdbcTemplate.update(url);
+        } catch (DataAccessException ex) {
+            System.err.println(ex.getMessage());
+        }
 
     }
 
@@ -109,14 +133,24 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
     public int countStudents() {
         final String sql = "SELECT COUNT(*) FROM student";
         // not best practice !
-        return jdbcTemplate.queryForObject(sql, Integer.class);
+        try {
+            return jdbcTemplate.queryForObject(sql, Integer.class);
+        } catch (DataAccessException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return 0;
     }
 
     // delete all records
     @Override
     public void deleteAllRecords() {
         final String sql = "DELETE FROM student";
-        jdbcTemplate.update(sql);
+
+        try {
+            jdbcTemplate.update(sql);
+        } catch (DataAccessException ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 
 
@@ -124,7 +158,12 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
     @Override
     public void deleteAllWhere(String s) {
         final String sql = "DELETE FROM student WHERE Name LIKE '" + s + "%'";
-        jdbcTemplate.update(sql);
+
+        try {
+            jdbcTemplate.update(sql);
+        } catch (DataAccessException ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 
 

@@ -7,16 +7,17 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class StudentService {
 
     @Autowired
-    @Qualifier("sqlite")
+    @Qualifier("studentsAccess")
     private StudentDaoInterface studentDaoInterface;
 
     // GET ALL STUDENTS
-    public Collection<Student> getAllStudents() {
+    public List<Student> getAllStudents() {
         return this.studentDaoInterface.getAllStudents();
     }
 

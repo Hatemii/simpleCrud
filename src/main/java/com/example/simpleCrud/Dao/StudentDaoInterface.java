@@ -3,10 +3,11 @@ package com.example.simpleCrud.Dao;
 import com.example.simpleCrud.Entity.Student;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface StudentDaoInterface {
     // GET ALL STUDENTS
-    Collection<Student> getAllStudents();
+    List<Student> getAllStudents();
 
     // GET STUDENT BY ID
     Student getStudentById(int id);
