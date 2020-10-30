@@ -60,4 +60,9 @@ public class StudentService {
     public void insertMultiple(List<Student> students) {
         this.studentDaoInterface.insertMultiple(students);
     }
+
+    // json query
+    public List<Student> jsonQuery() {
+        return this.studentDaoInterface.jsonQuery();
+    }
 }

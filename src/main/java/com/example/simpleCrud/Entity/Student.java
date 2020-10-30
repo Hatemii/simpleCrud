@@ -18,6 +18,10 @@ public class Student {
         this.course = course;
     }
 
+    // for json query
+    public Student() {
+    }
+
 
     public int getId() {
         return id;

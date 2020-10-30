@@ -75,4 +75,11 @@ public class StudentController {
         this.studentService.insertMultiple(students);
     }
 
+    // json query
+    @GetMapping
+    @RequestMapping("/jsonQuery")
+    public List<Student> jsonQuery() {
+        return this.studentService.jsonQuery();
+    }
+
 }

@@ -33,4 +33,7 @@ public interface StudentDaoInterface {
     // insert multiple records
     void insertMultiple(List<Student> students);
 
+    // json query
+    List<Student> jsonQuery();
+
 }

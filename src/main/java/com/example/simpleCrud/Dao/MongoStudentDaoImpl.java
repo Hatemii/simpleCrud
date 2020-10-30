@@ -192,7 +192,29 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
         }
     }
 
+    // json Query
+    @Override
+    public List<Student> jsonQuery() {
+        final String sql = "SELECT * FROM Student ORDER BY ID DESC";
 
+        List<Map<String, Object>> studentList = jdbcTemplate.queryForList(sql);
+
+        List<Student> personList = new ArrayList<Student>();
+
+        try {
+            for (final Map<String, Object> row : studentList) {
+                Student student = new Student();
+                student.setId((Integer) row.get("id"));
+                student.setName((String) row.get("name"));
+                student.setCourse((String) row.get("course"));
+                personList.add(student);
+            }
+        } catch (DataAccessException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return personList;
+    }
 }
 
 // jdbcTemplate.queryForObject -->> for single row or value
