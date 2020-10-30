@@ -68,4 +68,11 @@ public class StudentController {
         this.studentService.deleteAllWhere(s);
     }
 
+    // insert multiple records
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping("/insertJSON")
+    public void insertMultiple(@RequestBody List<Student> students) {
+        this.studentService.insertMultiple(students);
+    }
+
 }

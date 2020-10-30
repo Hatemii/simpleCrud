@@ -3,6 +3,7 @@ package com.example.simpleCrud.Dao;
 import com.example.simpleCrud.Entity.Student;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -161,6 +162,31 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
 
         try {
             jdbcTemplate.update(sql);
+        } catch (DataAccessException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
+
+    // insert multiple records
+    @Override
+    public void insertMultiple(List<Student> students) {
+        final String sql = "INSERT INTO Student (name,course) VALUES (?, ?)";
+
+        try {
+            jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
+                @Override
+                public void setValues(PreparedStatement ps, int i) throws SQLException {
+                    Student st = students.get(i);
+                    ps.setString(1, st.getName());
+                    ps.setString(2, st.getCourse());
+                }
+
+                @Override
+                public int getBatchSize() {
+                    return students.size();
+                }
+            });
         } catch (DataAccessException ex) {
             System.err.println(ex.getMessage());
         }

@@ -30,5 +30,7 @@ public interface StudentDaoInterface {
     // delete all records where name starts with
     void deleteAllWhere(String s);
 
+    // insert multiple records
+    void insertMultiple(List<Student> students);
 
 }

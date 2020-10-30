@@ -56,4 +56,8 @@ public class StudentService {
         this.studentDaoInterface.deleteAllWhere(s);
     }
 
+    // insert multiple records
+    public void insertMultiple(List<Student> students) {
+        this.studentDaoInterface.insertMultiple(students);
+    }
 }
