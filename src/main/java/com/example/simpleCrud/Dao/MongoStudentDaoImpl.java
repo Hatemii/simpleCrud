@@ -209,11 +209,12 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
                 student.setCourse((String) row.get("course"));
                 personList.add(student);
             }
+            return personList;
+
         } catch (DataAccessException ex) {
             System.err.println(ex.getMessage());
         }
-
-        return personList;
+        return null;
     }
 }
 
