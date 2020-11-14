@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/students")
 public class StudentController {
