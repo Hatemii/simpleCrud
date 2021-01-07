@@ -9,19 +9,25 @@ public class Student {
     @NotBlank(message = "Name may not be null")
     private String name;
 
-    @NotBlank(message = "Course may not be null")
-    private String course;
+    @NotBlank(message = "Surname may not be null")
+    private String surname;
 
-    public Student(int id, String name, String course) {
+    @NotBlank(message = "Field may not be null")
+    private String field;
+
+    private int semester;
+
+    public Student(int id, String name, String surname,String field, int semester) {
         this.id = id;
         this.name = name;
-        this.course = course;
+        this.surname = surname;
+        this.field = field;
+        this.semester = semester;
     }
 
     // for json query
     public Student() {
     }
-
 
     public int getId() {
         return id;
@@ -39,13 +45,27 @@ public class Student {
         this.name = name;
     }
 
-    public String getCourse() {
-        return course;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setCourse(String course) {
-        this.course = course;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
+    public String getField() {
+        return field;
+    }
 
+    public void setField(String field) {
+        this.field = field;
+    }
+
+    public int getSemester() {
+        return semester;
+    }
+
+    public void setSemester(int semester) {
+        this.semester = semester;
+    }
 }

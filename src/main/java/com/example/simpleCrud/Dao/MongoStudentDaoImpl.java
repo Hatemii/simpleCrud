@@ -34,12 +34,15 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
 
     @Override
     public List<Student> getAllStudents() {
-        final String sql = "SELECT * FROM student ORDER BY ID DESC";
+        final String sql = "SELECT * FROM student ORDER BY ID ASC";
         try {
             return jdbcTemplate.query(sql, (resultSet, i) -> {
                 return new Student(resultSet.getInt("id"),
                         resultSet.getString("name"),
-                        resultSet.getString("course"));
+                        resultSet.getString("surname"),
+                        resultSet.getString("field"),
+                        resultSet.getInt("semester")
+                );
             });
         } catch (DataAccessException ex) {
             System.err.println(ex.getMessage());
@@ -68,7 +71,10 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
                 return new Student(
                         resultSet.getInt("id"),
                         resultSet.getString("name"),
-                        resultSet.getString("course"));
+                        resultSet.getString("surname"),
+                        resultSet.getString("field"),
+                        resultSet.getInt("semester")
+                );
             });
         } catch (DataAccessException ex) {
             System.err.println(ex.getMessage());
@@ -98,7 +104,9 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
     public void updateStudent(int id, Student student) {
         final String url = "UPDATE student SET " +
                 "name = '" + student.getName() + "', " +
-                "course = '" + student.getCourse() + "' " +
+                "surname = '" + student.getSurname() + "', " +
+                "field = '" + student.getField() + "', " +
+                "semester = '" + student.getSemester() + "' " +
                 "WHERE ID = " + id;
 
         try {
@@ -119,8 +127,8 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
 
     @Override
     public void insertStudent(Student student) {
-        final String url = "INSERT INTO student (name, course)" +
-                " VALUES ('" + student.getName() + "', '" + student.getCourse() + "')";
+        final String url = "INSERT INTO student (name, surname, field, semester)" +
+                " VALUES ('" + student.getName() + "', '" + student.getSurname() + "','" + student.getField() + "', '" + student.getSemester() + "')";
 
         try {
             jdbcTemplate.update(url);
@@ -171,7 +179,7 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
     // insert multiple records
     @Override
     public void insertMultiple(List<Student> students) {
-        final String sql = "INSERT INTO Student (name,course) VALUES (?, ?)";
+        final String sql = "INSERT INTO Student (name,surname,field,semester) VALUES (?, ?)";
 
         try {
             jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
@@ -179,7 +187,9 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     Student st = students.get(i);
                     ps.setString(1, st.getName());
-                    ps.setString(2, st.getCourse());
+                    ps.setString(2, st.getSurname());
+                    ps.setString(2, st.getField());
+                    ps.setInt(2, st.getSemester());
                 }
 
                 @Override
@@ -206,7 +216,9 @@ public class MongoStudentDaoImpl implements StudentDaoInterface {
                 Student student = new Student();
                 student.setId((Integer) row.get("id"));
                 student.setName((String) row.get("name"));
-                student.setCourse((String) row.get("course"));
+                student.setSurname((String) row.get("surname"));
+                student.setField((String) row.get(""));
+                student.setSurname((String) row.get("surname"));
                 personList.add(student);
             }
             return personList;
