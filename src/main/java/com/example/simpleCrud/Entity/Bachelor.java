@@ -9,12 +9,15 @@ public class Bachelor {
             business,
             political;
 
-    public Bachelor(int id, String technology, String industrial, String business, String political) {
+    private int semester;
+
+    public Bachelor(int id, String technology, String industrial, String business, String political, int semester) {
         this.id = id;
         this.technology = technology;
         this.industrial = industrial;
         this.business = business;
         this.political = political;
+        this.semester = semester;
     }
 
     public int getId() {
@@ -56,4 +59,13 @@ public class Bachelor {
     public void setPolitical(String political) {
         this.political = political;
     }
+
+    public int getSemester(){
+        return semester;
+    }
+
+    public void setSemester(int semester){
+        this.semester = semester;
+    }
 }
+

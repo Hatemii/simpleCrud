@@ -7,13 +7,15 @@ public class Master {
             industrial,
             business,
             political;
+    private int semester;
 
-    public Master(int id, String technology, String industrial, String business, String political) {
+    public Master(int id, String technology, String industrial, String business, String political,int semeseter) {
         this.id = id;
         this.technology = technology;
         this.industrial = industrial;
         this.business = business;
         this.political = political;
+        this.semester = semeseter;
     }
 
     public int getId() {
@@ -54,5 +56,13 @@ public class Master {
 
     public void setPolitical(String political) {
         this.political = political;
+    }
+
+    public int getSemester(){
+        return semester;
+    }
+
+    public void setSemester(int semester){
+        this.semester = semester;
     }
 }

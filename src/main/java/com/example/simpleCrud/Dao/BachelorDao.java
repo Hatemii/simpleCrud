@@ -19,7 +19,7 @@ public class BachelorDao implements BachelorInterface {
 
     @Override
     public List<Bachelor> getAllStudyFields() {
-        final String sql = "SELECT * FROM Bachelor ORDER BY ID ASC LIMIT 6";
+        final String sql = "SELECT * FROM Bachelor ORDER BY Semester ASC";
         try {
             return jdbcTemplate.query(sql, (resultSet, i) -> {
                 return new Bachelor(
@@ -27,7 +27,8 @@ public class BachelorDao implements BachelorInterface {
                         resultSet.getString("technology"),
                         resultSet.getString("industrial"),
                         resultSet.getString("business"),
-                        resultSet.getString("political")
+                        resultSet.getString("political"),
+                        resultSet.getInt("semester")
                 );
             });
         } catch (DataAccessException ex) {
@@ -46,7 +47,9 @@ public class BachelorDao implements BachelorInterface {
                         resultSet.getString("technology"),
                         resultSet.getString("industrial"),
                         resultSet.getString("business"),
-                        resultSet.getString("political")
+                        resultSet.getString("political"),
+                        resultSet.getInt("semester")
+
                 );
             });
         } catch (DataAccessException ex) {
@@ -72,7 +75,8 @@ public class BachelorDao implements BachelorInterface {
                 "technology = '" + bachelor.getTechnology() + "', " +
                 "industrial = '" + bachelor.getIndustrial() + "', " +
                 "business = '" + bachelor.getBusiness() + "', " +
-                "political = '" + bachelor.getPolitical() + "' " +
+                "political = '" + bachelor.getPolitical() + "', " +
+                "semester = '" + bachelor.getSemester() + "' " +
                 "WHERE id = " + id;
 
         try {
@@ -84,8 +88,12 @@ public class BachelorDao implements BachelorInterface {
 
     @Override
     public void insertStudyField(Bachelor bachelor) {
-        final String url = "INSERT INTO Bachelor (technology, industrial, business, political)" +
-                " VALUES ('" + bachelor.getTechnology() + "', '" + bachelor.getIndustrial() + "','" + bachelor.getBusiness() + "', '" + bachelor.getPolitical() + "')";
+        final String url = "INSERT INTO Bachelor (technology, industrial, business, political, semester)" +
+                " VALUES ('" + bachelor.getTechnology() + "', " +
+                "'" + bachelor.getIndustrial() + "', " +
+                "'" + bachelor.getBusiness() + "', " +
+                "'" + bachelor.getPolitical() + "', " +
+                "'" + bachelor.getSemester() +"')";
 
         try {
             jdbcTemplate.update(url);
