@@ -19,7 +19,7 @@ public class MasterDao implements MasterInterface{
 
     @Override
     public List<Master> getAllStudyFields() {
-        final String sql = "SELECT * FROM Master ORDER BY ID ASC";
+        final String sql = "SELECT * FROM Master ORDER BY Semester ASC";
         try {
             return jdbcTemplate.query(sql, (resultSet, i) -> {
                 return new Master(
